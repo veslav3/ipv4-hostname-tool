@@ -24,3 +24,4 @@ node replace-localhost.js
 
 ## Further development
 If anyone can make a Python version of this program feel free to send a pullrequest from this branch:
+https://github.com/veslav3/ipv4-hostname-tool/tree/python
