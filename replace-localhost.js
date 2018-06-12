@@ -25,7 +25,7 @@ Object.keys(ifaces).forEach(function (ifname) {
           var result = data.replace('127.0.0.1', ipv4).replace('localhost', ipv4);
         
           fs.writeFile(fileName, result, 'utf8', err => {
-             if (err) return console.log(err);
+            if (err) return console.log(err);
           });
         });
       });
