@@ -2,6 +2,7 @@
 
 var os = require('os');
 var fs = require('fs');
+const url = require('url');
 
 var ifaces = os.networkInterfaces();
 
@@ -22,7 +23,9 @@ Object.keys(ifaces).forEach(function (ifname) {
       filesToReplace.forEach(fileName => {
         fs.readFile(fileName, 'utf8', (err, data) => {
           if (err) return console.log(err);
-          var result = data.replace('127.0.0.1', ipv4).replace('localhost', ipv4);
+          const urlRegex = /(https?:\/\/[^\s]+)/g;
+          const otherHostname = url.parse(data.match(urlRegex).toString()).hostname;
+          var result = data.replace('127.0.0.1', ipv4).replace('localhost', ipv4).replace(otherHostname, ipv4);
         
           fs.writeFile(fileName, result, 'utf8', err => {
             if (err) return console.log(err);
